@@ -1,8 +1,12 @@
 package jdbc;
 
 
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.Session;
 
-
+//import com.mysql.cj.Session;
+import jdbc.dao.UserDaoHibernateImpl;
 import jdbc.model.User;
 import jdbc.service.UserService;
 import jdbc.service.UserServiceImpl;
@@ -12,6 +16,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
         UserService userService = new UserServiceImpl();
         userService.createUsersTable();
         userService.saveUser("Max", "Ivanov", (byte)15);
@@ -26,5 +31,7 @@ public class Main {
         }
         userService.cleanUsersTable();
         userService.dropUsersTable();
+
+
     }
 }
