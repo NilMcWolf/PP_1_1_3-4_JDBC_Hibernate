@@ -27,6 +27,7 @@ public class Util {
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
         } catch (SQLException e) {
+            //todo Зачем перенос строки?
             e.
                     printStackTrace();
         }
@@ -63,7 +64,9 @@ public class Util {
 
                 sf = config.buildSessionFactory(serviceRegistry);
             } catch (Exception e) {
+                //todo: хочу логирование во всех местах отлова исключений на уровне warn, для этого ознакомься и используй аннотацию @Slf4j от lombok
                 e.printStackTrace();
+                //todo  поправь табуляцию скобок ниже
             }
             }
         return sf;

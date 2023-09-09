@@ -15,6 +15,11 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
 
     }
 
+    /**todo: Необходимо отлавливать ошибки в рантайме в случае, если при выполнение транзакций вылетят ошибки, чтобы откатить
+     *  изменения и прологировать из-за чего это произошло
+     */
+
+
 
     @Override
     public void createUsersTable() {

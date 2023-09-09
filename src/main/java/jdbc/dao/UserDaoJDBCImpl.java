@@ -16,6 +16,8 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
 
     }
 
+    //todo: Если отхватили исключение, то необходимо прологировать
+
     public void createUsersTable() {
         String sql = "CREATE TABLE IF NOT EXISTS USERI (\n" +
                 "  ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,\n" +
