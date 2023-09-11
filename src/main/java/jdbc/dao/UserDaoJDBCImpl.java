@@ -4,11 +4,14 @@ package jdbc.dao;
 
 import jdbc.model.User;
 import jdbc.util.Util;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
+@Slf4j
 public class UserDaoJDBCImpl extends Util implements UserDao {
 
     private final Connection con = getCon();
@@ -27,6 +30,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         try (Statement stm = con.createStatement()) {
             stm.executeUpdate(sql);
         } catch (SQLException e) {
+            log.warn("Исключение " + e);
             e.printStackTrace();
         }
     }
@@ -35,6 +39,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         try (Statement stm = con.createStatement()) {
             stm.executeUpdate(sql);
         } catch (SQLException e) {
+            log.warn("Исключение " + e);
             e.printStackTrace();
         }
     }
@@ -48,6 +53,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             prs.setInt(3, age);
             prs.executeUpdate();
         } catch (SQLException ex) {
+            log.warn("Исключение " + ex);
             ex.printStackTrace();
         }
 
@@ -59,6 +65,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             prs.setInt(1, (int)id);
             prs.executeUpdate();
         } catch (SQLException ex) {
+            log.warn("Исключение " + ex);
             ex.printStackTrace();
         }
     }
@@ -77,6 +84,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
                 itog.add(user);
             }
         } catch (SQLException e) {
+            log.warn("Исключение " + e);
             e.printStackTrace();
         }
         return itog;
@@ -87,6 +95,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         try (Statement stm = con.createStatement()) {
             stm.executeUpdate(sql);
         } catch (SQLException e) {
+            log.warn("Исключение " + e);
             e.printStackTrace();
         }
     }

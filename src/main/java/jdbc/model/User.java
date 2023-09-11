@@ -9,13 +9,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME") //todo: принять использовать в бд колонки с маленькой буквы, исправь
+    @Column(name = "name") //todo: принять использовать в бд колонки с маленькой буквы, исправь
     private String name;
 
-    @Column(name = "LASTNAME")
+    @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "AGE")
+    @Column(name = "age")
     private Byte age;
 
     public User() {

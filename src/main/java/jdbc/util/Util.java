@@ -1,6 +1,7 @@
 package jdbc.util;
 
 import jdbc.model.User;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+@Slf4j
 public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/kata";
     private static final String USERNAME = "root";
@@ -27,9 +29,8 @@ public class Util {
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
         } catch (SQLException e) {
-            //todo Зачем перенос строки?
-            e.
-                    printStackTrace();
+            log.warn("Исключение " + e);
+            e.printStackTrace();
         }
     }
 
@@ -65,13 +66,13 @@ public class Util {
                 sf = config.buildSessionFactory(serviceRegistry);
             } catch (Exception e) {
                 //todo: хочу логирование во всех местах отлова исключений на уровне warn, для этого ознакомься и используй аннотацию @Slf4j от lombok
+                log.warn("Исключение " + e);
                 e.printStackTrace();
-                //todo  поправь табуляцию скобок ниже
             }
-            }
-        return sf;
         }
+        return sf;
     }
+}
 
 
 
