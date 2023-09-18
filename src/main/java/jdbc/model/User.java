@@ -9,7 +9,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name") //todo: принять использовать в бд колонки с маленькой буквы, исправь
+    @Column(name = "name")
     private String name;
 
     @Column(name = "lastname")
