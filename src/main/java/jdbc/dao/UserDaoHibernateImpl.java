@@ -27,7 +27,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
 
     @Override
     public void createUsersTable() {
-        Transaction transaction;
+        Transaction transaction = null;
         try(Session session = Util.getSf().openSession()) {
             transaction = session.beginTransaction();
 
@@ -41,13 +41,14 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             transaction.commit();
         } catch (Exception ex) {
             log.warn("Исключение " + ex);
+            transaction.rollback();
             ex.printStackTrace();
         }
     }
 
     @Override
     public void dropUsersTable() {
-        Transaction transaction;
+        Transaction transaction = null;
         try(Session session = Util.getSf().openSession()) {
             transaction = session.beginTransaction();
 
@@ -58,26 +59,28 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             transaction.commit();
         } catch (Exception ex) {
             log.warn("Исключени " + ex);
+            transaction.rollback();
             ex.printStackTrace();
         }
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        Transaction transaction;
+        Transaction transaction = null;
         try(Session session = Util.getSf().openSession()) {
             transaction = session.beginTransaction();
             session.save(new User(name, lastName, age));
             transaction.commit();
         } catch (Exception ex) {
             log.warn("Исключение " + ex);
+            transaction.rollback();
             ex.printStackTrace();
         }
     }
 
     @Override
     public void removeUserById(long id) {
-        Transaction transaction;
+        Transaction transaction = null;
         try(Session session = Util.getSf().openSession()) {
             String hql = "DELETE User WHERE id = :lg";
             transaction = session.beginTransaction();
@@ -87,6 +90,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             transaction.commit();
         } catch (Exception ex) {
             log.warn("Исключение " + ex);
+            transaction.rollback();
             ex.printStackTrace();
         }
     }
@@ -104,7 +108,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        Transaction transaction;
+        Transaction transaction = null;
         try(Session session = Util.getSf().openSession()) {
             transaction = session.beginTransaction();
             List<User> buff = getAllUsers();
@@ -114,6 +118,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             transaction.commit();
         } catch (Exception ex) {
             log.warn("Исключение " + ex);
+            transaction.rollback();
             ex.printStackTrace();
         }
     }
